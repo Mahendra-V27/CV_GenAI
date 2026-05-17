@@ -4,7 +4,9 @@
 
 An end-to-end Computer Vision + GenAI solution that automatically generates moving inventory from home walkthrough videos.
 
-<video src="demo/AI-Moving-Inventory-Demo.mp4" controls width="700"></video>
+## Demo Video
+
+<video src="https://raw.githubusercontent.com/Mahendra-V27/CV_GenAI/main/AI-Moving-Inventory-System/demo/AI-Moving-Inventory-Demo.mp4" controls width="800"></video>
 
 ## 🚀 New in V2
 
