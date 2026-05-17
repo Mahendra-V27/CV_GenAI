@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: inventory-api
+ labels:
+   app: inventory-api
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: inventory-api
+ template:
+   metadata:
+     labels:
+       app: inventory-api
+   spec:
+     containers:
+     - name: inventory-api
+       image: inventory-system:latest
+       ports:
+       - containerPort: 8000
+       env:
+       - name: ENVIRONMENT
+         value: "production"
+       - name: MAX_WORKERS
+         value: "4"
+       resources:
+         requests:
+           memory: "2Gi"
+           cpu: "1"
+         limits:
+           memory: "4Gi"
+           cpu: "2"
+       livenessProbe:
+         httpGet:
+           path: /
+           port: 8000
+         initialDelaySeconds: 30
+         periodSeconds: 10
+       readinessProbe:
+         httpGet:
+           path: /
+           port: 8000
+         initialDelaySeconds: 5
+         periodSeconds: 5
+       volumeMounts:
+       - name: uploads
+         mountPath: /app/uploads
+       - name: outputs
+         mountPath: /app/outputs
+     volumes:
+     - name: uploads
+       emptyDir:
+         sizeLimit: 10Gi
+     - name: outputs
+       emptyDir:
+         sizeLimit: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: inventory-api-service
+spec:
+ selector:
+   app: inventory-api
+ ports:
+ - port: 80
+   targetPort: 8000
+ type: LoadBalancer
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+ name: inventory-api-hpa
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: inventory-api
+ minReplicas: 2
+ maxReplicas: 10
+ metrics:
+ - type: Resource
+   resource:
+     name: cpu
+     target:
+       type: Utilization
+       averageUtilization: 70
+ - type: Resource
+   resource:
+     name: memory
+     target:
+       type: Utilization
+       averageUtilization: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: inventory-config
+data:
+ DEFAULT_MODEL: "yolov8n"
+ DEFAULT_TRACKER: "simple"
+ MAX_FRAMES: "100"
+ CONFIDENCE_THRESHOLD: "0.4"

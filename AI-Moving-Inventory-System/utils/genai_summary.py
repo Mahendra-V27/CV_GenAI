@@ -409,3 +409,6 @@ if __name__ == "__main__":
    result = generator.generate_summary(test_inventory, test_volume, test_stats)
    print(f"\nMethod used: {result.method}")
    print(f"\nSummary:\n{result.summary}")
+
+
+

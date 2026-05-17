@@ -1,0 +1,77 @@
+version: '3.8'
+
+
+services:
+ # FastAPI Backend
+ api:
+   build: .
+   container_name: inventory-api
+   ports:
+     - "8000:8000"
+   volumes:
+     - ./uploads:/app/uploads
+     - ./outputs:/app/outputs
+     - ./models:/app/models
+   environment:
+     - MODEL_TYPE=yolov8n
+     - CONFIDENCE_THRESHOLD=0.4
+     - MAX_FRAMES=100
+     - WORKERS=2
+   healthcheck:
+     test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+     interval: 30s
+     timeout: 10s
+     retries: 3
+   restart: unless-stopped
+   deploy:
+     resources:
+       limits:
+         memory: 4G
+       reservations:
+         memory: 2G
+
+
+ # Streamlit V2 Frontend
+ streamlit:
+   build: .
+   container_name: inventory-ui
+   command: streamlit run app_v2.py --server.port 8501 --server.headless true --server.enableCORS false
+   ports:
+     - "8501:8501"
+   volumes:
+     - ./uploads:/app/uploads
+     - ./outputs:/app/outputs
+   environment:
+     - API_URL=http://api:8000
+   depends_on:
+     api:
+       condition: service_healthy
+   restart: unless-stopped
+   deploy:
+     resources:
+       limits:
+         memory: 4G
+       reservations:
+         memory: 2G
+
+
+ # Ollama LLM (optional - for GenAI summaries)
+ ollama:
+   image: ollama/ollama:latest
+   container_name: inventory-ollama
+   ports:
+     - "11434:11434"
+   volumes:
+     - ollama_data:/root/.ollama
+   restart: unless-stopped
+   profiles:
+     - with-llm
+
+
+volumes:
+ ollama_data:
+
+
+networks:
+ default:
+   name: inventory-network
