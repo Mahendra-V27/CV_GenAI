@@ -1,0 +1,96 @@
+# -----------------------------
+# Python cache / compiled files
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.cv_genai_venv/
+_venv/
+venv/
+.env/
+.envrc
+
+# -----------------------------
+# ML / AI model files
+# -----------------------------
+models/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.pb
+*.safetensors
+*.bin
+
+# -----------------------------
+# Computer Vision outputs
+# -----------------------------
+extracted_frames/
+runs/
+outputs/
+predictions/
+inference_results/
+
+# -----------------------------
+# Jupyter / Notebook
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs/
+*.log
+
+# -----------------------------
+# Dataset / large files
+# -----------------------------
+data/
+datasets/
+*.csv
+*.parquet
+*.feather
+*.zip
+*.tar.gz
+
+# -----------------------------
+# IDE / Editor files
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# -----------------------------
+# Build / distribution
+# -----------------------------
+build/
+dist/
+*.egg-info/
+
+# -----------------------------
+# Testing / coverage
+# -----------------------------
+.coverage
+htmlcov/
+.pytest_cache/
+
+# -----------------------------
+# Environment / secrets
+# -----------------------------
+.env
+secrets.json
+config.local.yaml
+credentials.json
+
+# -----------------------------
+# Temporary files
+# -----------------------------
+tmp/
+temp/
+.cache/
