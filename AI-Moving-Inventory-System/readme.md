@@ -6,7 +6,9 @@ An end-to-end Computer Vision + GenAI solution that automatically generates movi
 
 ## Demo Video
 
-<video src="https://raw.githubusercontent.com/Mahendra-V27/CV_GenAI/main/AI-Moving-Inventory-System/demo/AI-Moving-Inventory-Demo.mp4" controls width="800"></video>
+https://github.com/user-attachments/assets/b1467011-0680-405c-8da6-696fc2bfe2bd
+
+
 
 ## 🚀 New in V2
 
