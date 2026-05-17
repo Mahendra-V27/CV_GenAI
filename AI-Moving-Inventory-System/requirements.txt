@@ -1,0 +1,30 @@
+# Core dependencies
+streamlit>=1.28.0
+opencv-python>=4.8.0
+ultralytics>=8.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
+pandas>=2.0.0
+
+
+# Video processing
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+
+
+# Object tracking (optional - for advanced deduplication)
+scipy>=1.11.0
+
+
+# GenAI - Using Ollama for local open-source LLM
+ollama>=0.1.0
+
+
+# Alternative: HuggingFace transformers for local LLM
+transformers>=4.35.0
+torch>=2.0.0
+
+
+# Utilities
+tqdm>=4.65.0
+python-dotenv>=1.0.0
