@@ -4,6 +4,11 @@
 
 An end-to-end Computer Vision + GenAI solution that automatically generates moving inventory from home walkthrough videos.
 
+## Design
+
+<img width="732" height="1066" alt="Screenshot 2026-05-17 at 8 58 52 PM" src="https://github.com/user-attachments/assets/0c6676c6-de7e-4f27-9064-cf9bbad36f49" />
+
+
 ## Demo Video
 
 https://github.com/user-attachments/assets/b1467011-0680-405c-8da6-696fc2bfe2bd
